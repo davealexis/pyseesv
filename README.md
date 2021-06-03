@@ -77,12 +77,12 @@ This generates both an sdist(tar.gz file) and a Wheel file that can then be inst
 from seesv import DelimitedFile
 ...
 
-with DelimitedFile('/path/to/test.csv') as csvFile:
+with DelimitedFile('/path/to/test.csv') as csv_file:
     ...
-    # Array of column headers is available as csvFile.header
+    # Array of column headers is available as csv_file.header
     
     # Get 1,000 rows starting from row 25,000
-    for row in csvFile.getRows(25000, 1000):
+    for row in csv_file.get_rows(25000, 1000):
         # work with row
 ```
 
@@ -91,10 +91,10 @@ with DelimitedFile('/path/to/test.csv') as csvFile:
 **Example 2:** Similar to Example 1, except the file contains two extra metadata lines at the top before the column headers that we want to skip:
 
 ```python
-with DelimitedFile('/path/to/test.csv', skipRows=2) as csvFile:
+with DelimitedFile('/path/to/test.csv', skip_rows=2) as csv_file:
     ...
     # Get 1,000 rows starting from row 25,000
-    for row in csvFile.getRows(25000, 1000):
+    for row in csv_file.get_rows(25000, 1000):
         # work with row
 ```
 
@@ -103,12 +103,12 @@ with DelimitedFile('/path/to/test.csv', skipRows=2) as csvFile:
 **Example 3:** The file does not contain a header row, so we just want access to the data:
 
 ```python
-with DelimitedFile('/path/to/test.csv', hasHeader=False) as csvFile:
+with DelimitedFile('/path/to/test.csv', has_header=False) as csv_file:
     ...
-    # csvFile.header is not populated
+    # csv_file.header is not populated
     
     # Get 1,000 rows starting from row 25,000
-    for row in csvFile.getRows(25000, 1000):
+    for row in csv_file.get_rows(25000, 1000):
         # work with row
 ```
 
@@ -117,10 +117,10 @@ with DelimitedFile('/path/to/test.csv', hasHeader=False) as csvFile:
 **Example 4:** We don't want to use the context manager interface:
 
 ```python
-csvFile = DelimitedFile('/path/to/test.csv')
-csvFile.open()
+csv_file = DelimitedFile('/path/to/test.csv')
+csv_file.open()
 ...
-csvFile.close()
+csv_file.close()
 ```
 
 
@@ -128,11 +128,11 @@ csvFile.close()
 **Example 5:** We just want to get a single row from the file:
 
 ```python
-with DelimitedFile('/path/to/test.csv') as csvFile:
-    row = csvFile.getRow(1500)
+with DelimitedFile('/path/to/test.csv') as csv_file:
+    row = csv_file.get_row(1500)
     
     # Get the last row of the file
-    row = csvFile.getRow(csvFile.rowCount)
+    row = csv_file.get_row(csv_file.rowCount)
 ```
 
 
@@ -140,11 +140,11 @@ with DelimitedFile('/path/to/test.csv') as csvFile:
 **Example 6:**  Get all rows from a given point till the end of the file:
 
 ```python
-with DelimitedFile('/path/to/test.csv') as csvFile:
-    for row in csvFile.getRows(1500):
+with DelimitedFile('/path/to/test.csv') as csv_file:
+    for row in csv_file.get_rows(1500):
         ...
     # Get last 100 rows in the file
-    for row in csvFile.getRows(csvFile.rowCount - 100):
+    for row in csv_file.get_rows(csv_file.rowCount - 100):
         ...
 ```
 

@@ -1,4 +1,4 @@
-This is a sample metadata row and should be ignored. This file contains 5,000 rows.
+-- File generated with Mockeroo (https://mockaroo.com/). Contains 5,000 rows. --
 ID,FIRST_NAME,LAST_NAME,COMPANY,EMAIL,CAR,CAR_YEAR,COUNTRY
 64-5473828,Phillida,Chelley,Zooveo,pchelley0@upenn.edu,Cadillac,2010,CN
 58-4122954,Porty,Kynforth,Riffpath,pkynforth1@mapy.cz,Pontiac,1988,RU

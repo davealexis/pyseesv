@@ -23,7 +23,7 @@ def filterFile():
     '''
     We're going to instantiate a DelimitedFile object with the following parameters:
     - name/path of the source CSV file
-    - skip_lines = 1 tells DelimitedFile to ignore 1 line at the top of the file
+    - skip_rows = 1 tells DelimitedFile to ignore 1 line at the top of the file
     - progress_reporter is reference to our log_progress function. This will be at intervals
           as the file is being scanned and indexed by the open() method.
     - error_reporter is a reference to a function that will be called by open() if any errors
@@ -33,7 +33,7 @@ def filterFile():
     '''
     inputFile = DelimitedFile(
         source_file,
-        skip_lines=1,
+        skip_rows=1,
         progress_reporter=log_progress,
         error_reporter=lambda msg: print("BIG TROUBLE! ", msg))
 

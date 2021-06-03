@@ -1,10 +1,5 @@
 from pathlib import Path
-from seesvlib import __version__, DelimitedFile
-
-
-# .................................................................................................
-def test_version():
-    assert __version__ == '0.1.0'
+from seesv import __version__, DelimitedFile
 
 
 # .................................................................................................
@@ -51,14 +46,14 @@ def test_fail_if_1st_header_not_skipped():
 
 # .................................................................................................
 def test_skip_1st_header():
-    with DelimitedFile(get_file_path('test_extra_header.csv'), skip_lines=1) as csv_file:
+    with DelimitedFile(get_file_path('test_extra_header.csv'), skip_rows=1) as csv_file:
         assert csv_file.header[0] == 'ID' and csv_file.header[1] == 'FIRST_NAME'
         assert csv_file.row_count == 100
 
 
 # .................................................................................................
 def test_no_header():
-    with DelimitedFile(get_file_path('test_no_header.csv'), skip_lines=0, has_header=False) as csv_file:
+    with DelimitedFile(get_file_path('test_no_header.csv'), skip_rows=0, has_header=False) as csv_file:
         assert not csv_file.header
         assert csv_file.row_count == 100
 
@@ -76,7 +71,7 @@ def test_get_1_row():
         # Get last row of the file
         assert csv_file.get_row(csv_file.row_count - 1)[1] == 'LastRow'
 
-    with DelimitedFile(get_file_path('test_extra_header.csv'), skip_lines=1) as csv_file:
+    with DelimitedFile(get_file_path('test_extra_header.csv'), skip_rows=1) as csv_file:
         line = csv_file.get_row(0)
 
         assert line[0] == '1'

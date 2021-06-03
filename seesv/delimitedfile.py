@@ -14,7 +14,7 @@ class DelimitedFile(AbstractContextManager):
     def __init__(
         self,
         filePath: str,
-        skip_lines: int = 0,
+        skip_rows: int = 0,
         has_header: bool = True,
         progress_reporter=None,
         error_reporter=None
@@ -29,7 +29,7 @@ class DelimitedFile(AbstractContextManager):
 
         self.progress_reporter = progress_reporter
         self.error_reporter = error_reporter
-        self.skip_lines = skip_lines
+        self.skip_rows = skip_rows
         self.has_header = has_header
         self.row_index = array('I', [])
         self.row_count = 0
@@ -70,7 +70,7 @@ class DelimitedFile(AbstractContextManager):
         percent_done = 0
         capacity = len(self.row_index)
 
-        for _ in range(self.skip_lines):
+        for _ in range(self.skip_rows):
             _, _ = self._read_line(self.source_file)
 
         current_pos = self._read_header(self.source_file)
