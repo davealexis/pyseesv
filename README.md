@@ -1,8 +1,6 @@
-# SeeSV-Lib
+# SeeSV
 
-
-
-SeeSV-Lib is a library for providing fast access to data in very large delimited data files (CSV, TSV, pipe-delimited, etc) as memory-efficient as possible.
+SeeSV is a library for providing fast access to data in very large delimited data files (CSV, TSV, pipe-delimited, etc) as memory-efficient as possible.
 
 This library grew out of the frustration of reading and analyzing very large (multi-gigabyte, 5+ million row) CSV files (and other delimited file formats). There are few options for reading these files to quickly find problems, generate a filtered subset, or find specific data. There was the constant need for both a command line tool that can be used on a server via an SSH terminal connection and a desktop tool that can quickly churn through huge files. There are many tools out there, but most fall flat when handling very large files - either they take forever to open the file or (and) end up crashing by running out of memory.
 
@@ -16,7 +14,7 @@ This project provides the re-usable Python library that can be used to build too
 
 
 
-### SeeSV-Lib Features
+### SeeSV Features
 
 - Blazing fast loading of files so that the user gets to a productive state with the data within seconds.
 - Minimal memory consumption even for extremely large files.
@@ -39,6 +37,36 @@ The DelimitedFile class encapsulates all of the functionality. It is implemented
 
 
 
+## Development
+
+SeeSV uses [Poetry](https://python-poetry.org/) to build and publish. Poetry's excellent dependency management feature is not needed, since SeeSV has no dependencies. However, Poetry comes in handy for managing the development environment.
+
+To get started with working on the code, first get Poetry installed, then follow these steps:
+
+**Create a new virtual environment for the project (or use the currently activated one)**
+
+```shell
+poetry shell
+```
+
+**Get the development dependencies installed** (pytest, flake8, etc)
+
+```shell
+poetry install
+```
+
+This command also installs the seesv library into the virtual environment's site_packages.
+
+**Build the code**
+
+```shell
+poetry build
+```
+
+This generates both an sdist(tar.gz file) and a Wheel file that can then be installed using Pip.
+
+
+
 ## Examples
 
 
@@ -46,7 +74,7 @@ The DelimitedFile class encapsulates all of the functionality. It is implemented
 **Example 1:** a file with the context manager interface, assuming that the file has a header line:
 
 ```python
-from seesvlib import DelimitedFile
+from seesv import DelimitedFile
 ...
 
 with DelimitedFile('/path/to/test.csv') as csvFile:
@@ -116,7 +144,7 @@ with DelimitedFile('/path/to/test.csv') as csvFile:
     for row in csvFile.getRows(1500):
         ...
     # Get last 100 rows in the file
-    for row in csvFile.getRows(csvFile.rowCount - 99):
+    for row in csvFile.getRows(csvFile.rowCount - 100):
         ...
 ```
 

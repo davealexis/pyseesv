@@ -5,7 +5,7 @@
     - 
 """
 
-from seesvlib import DelimitedFile
+from seesv import DelimitedFile
 import csv
 
 def log_progress(percent_complete: int):

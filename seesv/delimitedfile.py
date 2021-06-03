@@ -130,7 +130,7 @@ class DelimitedFile(AbstractContextManager):
     # .............................................................................................
     def get_row(self, row_number: int) -> Union[list, None]:
         if row_number <= self.row_count:
-            line_position = self.row_index[row_number - 1]
+            line_position = self.row_index[row_number]
             self.source_file.seek(line_position, 0)
             raw_line = StringIO(self.source_file.readline())
             cr = csv.reader(raw_line)
