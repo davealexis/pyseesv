@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "seesvlib"
+version = "0.1.0"
+description = "A Python library providing fast access to data in very large delimited data files (CSV, TSV, pipe-delimited, etc)."
+authors = ["David Alexis <dalexis@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^3.9.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
